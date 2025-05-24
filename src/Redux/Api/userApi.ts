@@ -14,8 +14,8 @@ const userApi = baseApi.injectEndpoints({
             invalidatesTags: ["logIn"]
         }),
         allUsers: build.query({
-            query: ({ page, limit, email, activeTab }) => ({
-                url: `/admin?page=${page}&limit=${limit}&email=${email}&role=${activeTab}`,
+            query: ({ page, limit }) => ({
+                url: `/user?page=${page}&limit=${limit}`,
                 method: "GET"
             }),
             providesTags: ["allUsers"]

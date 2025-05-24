@@ -1,10 +1,10 @@
-import Helpers from "./Helpers";
+import AllUsers from "./AllUsers";
 
 
 export default function Page() {
     return (
         <div >
-            <Helpers />
+            <AllUsers />
         </div>
     );
 }

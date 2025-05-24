@@ -24,7 +24,7 @@ interface SidebarProps {
 
 const navigation: { label: string, route: string, iconPath: IconType }[] = [
   { label: "Dashboard", route: "/", iconPath: MdDashboard },
-  { label: "Total Users", route: "/all-users", iconPath: FaUsers },
+  { label: "Total Users", route: "/users", iconPath: FaUsers },
   { label: "Subscription", route: "/subscription", iconPath: MdSubscriptions  }, 
   { label: "Courses", route: "/Courses", iconPath: MdOutlineCastForEducation }, 
 ];

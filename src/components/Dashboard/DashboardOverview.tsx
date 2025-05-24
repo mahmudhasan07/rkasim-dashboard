@@ -37,40 +37,14 @@ export default function DashboardOverview() {
     <div className="pt-8 pb-32 lg:px-0 px-3">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid lg:grid-cols-4 grid-cols-2 gap-6 justify-between">
-            {/* Card 1 */}
-            <div className="w-full bg-white rounded-lg shadow-md">
-            <div className="relative p-6 border-2 rounded-xl">
-              <div className="space-y-4 font-poppins">
-                <h3 className="text-xl font-medium text-gray-900">Total Service Request</h3>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-[32px] font-bold tracking-tight"><CountUp end={totalService} duration={3}></CountUp></span>
-                  {/* <span className="text-lg text-gray-500">From All Services</span> */}
-                </div>
-                <p></p>
-              </div>
-            </div>
-          </div>
+          
           {/* Card 2 */}
           <div className="w-full bg-white rounded-lg shadow-md">
             <div className="relative p-6 border-2 rounded-xl">
               <div className="space-y-4 font-poppins">
-                <h3 className="text-xl font-medium text-gray-900">Total Needers</h3>
+                <h3 className="text-xl font-medium text-gray-900">Total Users</h3>
                 <div className="flex items-baseline gap-2">
                   <span className="text-[32px] font-bold tracking-tight"> <CountUp end={userLength} /></span>
-                  {/* <span className="text-lg text-gray-500">People</span> */}
-                </div>
-                <p className="text-base text-gray-600"></p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="w-full bg-white rounded-lg shadow-md">
-            <div className="relative p-6 border-2 rounded-xl">
-              <div className="space-y-4 font-poppins">
-                <h3 className="text-xl font-medium text-gray-900">Total Helpers</h3>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-[32px] font-bold tracking-tight"><CountUp end={ownerLength} /></span>
                   {/* <span className="text-lg text-gray-500">People</span> */}
                 </div>
                 <p className="text-base text-gray-600"></p>

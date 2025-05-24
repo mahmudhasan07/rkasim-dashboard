@@ -3,7 +3,7 @@ import UserTable from '@/components/Table/UserTable';
 import { useAllUsersQuery } from '@/Redux/Api/userApi';
 import React, { useRef, useState } from 'react';
 
-const Helpers = () => {
+const AllUsers = () => {
     const emailRef = useRef<HTMLInputElement | null>(null)
     const [activeTab, setActiveTab] = useState<string>("HELPER");
     const [page, setPage] = useState<number>(1);
@@ -44,4 +44,4 @@ const Helpers = () => {
     );
 };
 
-export default Helpers;
+export default AllUsers;

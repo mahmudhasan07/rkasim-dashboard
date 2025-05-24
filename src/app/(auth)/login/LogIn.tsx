@@ -40,7 +40,7 @@ const LogIn = () => {
       setLogIn("Log in");
     }
     if (data) {
-      if (data?.data?.role != "SUPERADMIN") {
+      if (data?.data?.role != "ADMIN") {
         ShowToastify({ error: "You are not authorize" });
         setLogIn("Log in");
         dispatch(logOut());
@@ -59,13 +59,13 @@ const LogIn = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen ">
-      <div className="w-full  flex p-6 ">
-        <div className=" mb-6  w-1/2">
+      <div className="w-full  flex  p-6 ">
+        <div className=" mb-6 my-auto lg:w-1/2 md:w-2/3 ">
           <Image src={logo} alt="logo" className="mx-auto w-1/2" />
         </div>
 
-        <div className="my-auto">
-          <h2 className="text-4xl text-center my-4">Welcome, Admin! Manage <span >Roof-monster</span> with Ease.</h2>
+        <div className="my-auto w-[40%]">
+          <h2 className="lg:text-5xl md:text-3xl text-2xl  text-start my-4 font-bold">Welcome, Admin! Manage <span className="text-primary">Roof-monster</span> with Ease.</h2>
           {/* <p className="text-center text-gray-600 mb-8">
                     Lets explore <span className='text-primary font-semibold text-lg'>Town'zz</span> diversely
                 </p> */}
