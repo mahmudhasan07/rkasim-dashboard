@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "@/Redux/ReduxFunction";
 import Cookies from "js-cookie";
 import { AppDispatch, RootState } from "@/Redux/store";
+import { MdSubscriptions } from "react-icons/md";
+import { MdOutlineCastForEducation } from "react-icons/md";
 import { IconType } from "react-icons";
 interface SidebarProps {
   isOpen: boolean;
@@ -22,10 +24,9 @@ interface SidebarProps {
 
 const navigation: { label: string, route: string, iconPath: IconType }[] = [
   { label: "Dashboard", route: "/", iconPath: MdDashboard },
-  { label: "Needers", route: "/needers", iconPath: FaUsers },
-  { label: "Helpers", route: "/helpers", iconPath: FaUsers },
-  { label: "Transaction", route: "/transaction", iconPath: TbTransactionDollar }, 
-  { label: "Complains", route: "/complains", iconPath: TbTransactionDollar }, 
+  { label: "Total Users", route: "/all-users", iconPath: FaUsers },
+  { label: "Subscription", route: "/subscription", iconPath: MdSubscriptions  }, 
+  { label: "Courses", route: "/Courses", iconPath: MdOutlineCastForEducation }, 
 ];
 
 const NavbarSlider = ({ isOpen, toggleSidebar }: SidebarProps) => {

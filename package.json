@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3005 --turbopack",
+    "dev": "next dev --port 3000 --turbopack",
     "build": "next build",
-    "start": "next start -p 3005",
+    "start": "next start -p 3000",
     "lint": "next lint",
     "vercel-build": "npm rebuild sharp && npm run build"
   },
