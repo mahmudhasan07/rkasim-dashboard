@@ -78,9 +78,9 @@ const UserDetails = () => {
           {/* Experience Section */}
           <div className="space-y-4">
             <h3 className="text-3xl font-semibold text-gray-700">Experience</h3>
-            {profile.experience && profile.experience.length > 0 ? (
+            {profile?.experience && profile.experience.length > 0 ? (
               <ul className="mt-2 space-y-2">
-                {profile.experience.map((exp, index) => (
+                {profile.experience.map((exp : any, index : any) => (
                   <li key={index} className="text-lg">
                     <p className="font-medium text-gray-800">{exp.company}</p>
                     <p className="text-gray-500">
@@ -97,9 +97,9 @@ const UserDetails = () => {
           {/* Education Section */}
           <div className="space-y-4">
             <h3 className="text-3xl font-semibold text-gray-700">Education</h3>
-            {profile.education && profile.education.length > 0 ? (
+            {profile?.education && profile.education.length > 0 ? (
               <ul className="mt-2 space-y-2">
-                {profile.education.map((edu, index) => (
+                {profile?.education.map((edu : any, index: any) => (
                   <li key={index} className="text-lg">
                     <p className="font-medium text-gray-800">{edu.institute}</p>
                     <p className="text-gray-500">
@@ -119,25 +119,50 @@ const UserDetails = () => {
             <h3 className="text-3xl font-semibold text-gray-700">
               Current Job
             </h3>
-            {profile.Job ? (
+            {profile?.Job.map((job : any, index : any) => (
+                (
               <div className="space-y-2">
                 <p className="text-lg font-medium">
-                  {profile.Job.companyName} - {profile.Job.position}
+                  {job.companyName} - {job.position}
                 </p>
                 <p className="text-gray-600">
-                  Location: {profile.Job.location}
+                  Status: {job.status}
+                </p>
+                {
+                    job.status == "CLOSED" || "PAUSED" ? 
+                    (
+                        <p className="text-gray-600">
+                          Reason: {job.reasonForPause}
+                        </p>
+                    ) : null
+                }
+                <p className="text-gray-600">
+                  Location: {job.location}
                 </p>
                 <p className="text-gray-600">
-                  Skills Required: {profile.Job.skills.join(", ")}
+                  Type: {job.type}
+                </p>
+            
+                <p className="text-gray-600">
+                  Skills Required: {job.skills.join(", ")}
                 </p>
                 <p className="text-gray-600">
-                  Salary Range: {profile.Job.salaryRange}
+                  Salary Range: {job.salaryRange}
                 </p>
                 <p className="text-gray-600">
-                  Description: {profile.Job.description}
+                  Qualification: {job.qualification}
+                </p>
+                <p className="text-gray-600">
+                  Experience: {job.experience}
+                </p>
+                <p className="text-gray-600">
+                  Specialization: {job.specialization}
+                </p>
+                <p className="text-gray-600">
+                  Description: {job.description}
                 </p>
                 <a
-                  href={profile.Job.websiteLink}
+                  href={job.websiteLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
@@ -145,15 +170,16 @@ const UserDetails = () => {
                   Visit Company Website
                 </a>
               </div>
-            ) : (
-              <p className="text-sm text-gray-500">No current job listed.</p>
-            )}
+            ) 
+            )) 
+            
+            }
           </div>
 
           {/* NID Image Section */}
           <div>
             <h3 className="text-3xl font-semibold text-gray-700">NID Image</h3>
-            {profile.nidImage ? (
+            {profile?.nidImage ? (
               <Image
                 src={profile.nidImage}
                 alt="NID Image"
@@ -169,7 +195,7 @@ const UserDetails = () => {
           {/* Contact Button */}
           <div className="mt-6 text-center">
             <a
-              href={`mailto:${profile.email}`}
+              href={`mailto:${profile?.email}`}
               className="inline-block px-8 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 transition duration-300"
             >
               Contact
