@@ -28,7 +28,7 @@ const UserDetails = () => {
                 alt="Profile Picture"
                 width={150}
                 height={150}
-                className="rounded-full border-4 border-indigo-600 shadow-md"
+                className="rounded-full border-2 h-48 w-48 object-cover shadow-md"
               />
             </div>
             <div className="flex-1">
