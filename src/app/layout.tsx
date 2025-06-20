@@ -17,8 +17,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Helper Dashboard",
-  description: "The control panel for Fidden",
+  title: "Find Jobs Dashboard",
+  description: "The control panel for Find Jobs",
   icons: {
     icon: logo.src
   }

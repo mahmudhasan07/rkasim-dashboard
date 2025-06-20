@@ -14,9 +14,9 @@ export default function DashboardOverview() {
   const {totalService, userLength, ownerLength, totalIncome } = useDashboardInfoQuery("", {
     selectFromResult: ({ data }) => ({
       totalService: data?.data?.totalService,
-      userLength: data?.data?.userLength,
+      userLength: data?.data?.totalUser,
       ownerLength:data?.data?.ownerLength,
-      totalIncome:data?.data?.totalIncome,
+      totalIncome:data?.data?.totalEarning,
     })
   })
   const today = new Date().toISOString()
@@ -39,8 +39,8 @@ export default function DashboardOverview() {
         <div className="grid lg:grid-cols-4 grid-cols-2 gap-6 justify-between">
           
           {/* Card 2 */}
-          <div className="w-full bg-white rounded-lg shadow-md">
-            <div className="relative p-6 border-2 rounded-xl">
+          <div className="w-full bg-white rounded-xl shadow-md border">
+            <div className="relative p-6  ">
               <div className="space-y-4 font-poppins">
                 <h3 className="text-xl font-medium text-gray-900">Total Users</h3>
                 <div className="flex items-baseline gap-2">
@@ -53,8 +53,8 @@ export default function DashboardOverview() {
           </div>
 
           {/* Card 4 */}
-          <div className="w-full bg-white rounded-lg shadow-md">
-            <div className="relative p-6 border-2 rounded-xl">
+          <div className="w-full bg-white rounded-xl shadow-md border">
+            <div className="relative p-6 ">
               <div className="space-y-4 font-poppins">
                 <h3 className="text-xl font-medium text-gray-900">Total Earning</h3>
                 <div className="flex items-baseline gap-2">

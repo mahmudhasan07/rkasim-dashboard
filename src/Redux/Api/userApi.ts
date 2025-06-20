@@ -15,7 +15,7 @@ const userApi = baseApi.injectEndpoints({
         }),
         allUsers: build.query({
             query: ({ page, limit }) => ({
-                url: `/user?page=${page}&limit=${limit}`,
+                url: `/admin/all-users?page=${page}&limit=${limit}`,
                 method: "GET"
             }),
             providesTags: ["allUsers"]
@@ -46,7 +46,7 @@ const userApi = baseApi.injectEndpoints({
         }),
         dashboardInfo: build.query({
             query: () => ({
-                url: `/admin/dashboard/all`,
+                url: `/admin/admin-details`,
                 method: "GET"
             })  ,
             providesTags: ["dashboardInfo"]

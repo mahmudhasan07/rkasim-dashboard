@@ -7,7 +7,7 @@ const AllUsers = () => {
     const emailRef = useRef<HTMLInputElement | null>(null)
     const [activeTab, setActiveTab] = useState<string>("HELPER");
     const [page, setPage] = useState<number>(1);
-    const limit = 20;
+    const limit = 15;
     const [email, setEmail] = useState<string>("");
     const { userData, isLoading, pages } = useAllUsersQuery({ page, limit, email, activeTab }, {
         selectFromResult: ({ data, isLoading }) => ({
@@ -37,7 +37,7 @@ const AllUsers = () => {
             <div className="flex justify-center gap-5 mt-5">
                 {
                     button && button.map((item: string, index: number) =>
-                        <button onClick={() => setPage(index + 1)} className='border-2 px-3 py-1 rounded-lg border-primary/50 text-primary text-lg font-bold' key={index}>{item + 1}</button>)
+                        <button onClick={() => setPage(index + 1)} className={`border-2 px-3 py-1 rounded-lg font-bold ${page === index + 1 ? "bg-primary text-white" : ""}`} key={index}>{item + 1}</button>)
                 }
             </div>
         </section>
