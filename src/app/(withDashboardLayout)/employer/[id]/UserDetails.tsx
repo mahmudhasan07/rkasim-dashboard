@@ -19,7 +19,7 @@ const UserDetails = () => {
       {isLoading ? (
         "loading..."
       ) : (
-        <div className="w-full max-w-4xl mx-auto bg-white border border-gray-300 rounded-3xl shadow-lg p-8 space-y-6">
+        <div className="w-full max-w-7xl mx-auto bg-white border border-gray-300 rounded-3xl shadow-lg p-8 space-y-6">
           {/* Profile Header Section */}
           <div className="flex items-center justify-start space-x-6">
             <div className="flex-shrink-0">
@@ -38,7 +38,9 @@ const UserDetails = () => {
               <p className="text-xl text-gray-600">{profile?.role}</p>
               <p className="mt-4 text-lg text-gray-500">{profile?.about}</p>
               {profile?.age ? (
-                <p className="mt-2 text-sm text-gray-600">Age: {profile?.age}</p>
+                <p className="mt-2 text-sm text-gray-600">
+                  Age: {profile?.age}
+                </p>
               ) : null}
               {profile?.location ? (
                 <p className="mt-2 text-sm text-gray-600">
@@ -59,147 +61,142 @@ const UserDetails = () => {
             </div>
           </div>
 
-          {/* Skills Section */}
-          <div className="space-y-4">
-            <h3 className="text-3xl font-semibold text-gray-700">Skills</h3>
-            {profile?.skills && profile.skills.length > 0 ? (
-              <ul className="mt-2 space-y-2 text-gray-600">
-                {profile.skills.map((skill : any, index : any) => (
-                  <li key={index} className="text-lg">
-                    - {skill}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm text-gray-500">No skills listed.</p>
-            )}
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Skills Section */}
+            <div className="space-y-4">
+              <h3 className="text-3xl font-semibold text-gray-700">Skills</h3>
+              {profile?.skills && profile.skills.length > 0 ? (
+                <ul className="mt-2 space-y-2 text-gray-600">
+                  {profile.skills.map((skill: any, index: any) => (
+                    <li key={index} className="text-lg">
+                      - {skill}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-gray-500">No skills listed.</p>
+              )}
+            </div>
 
-          {/* Experience Section */}
-          <div className="space-y-4">
-            <h3 className="text-3xl font-semibold text-gray-700">Experience</h3>
-            {profile?.experience && profile.experience.length > 0 ? (
-              <ul className="mt-2 space-y-2">
-                {profile.experience.map((exp : any, index : any) => (
-                  <li key={index} className="text-lg">
-                    <p className="font-medium text-gray-800">{exp.company}</p>
-                    <p className="text-gray-500">
-                      {exp.title} - {exp.startDate} to {exp.endDate}
+            {/* Experience Section */}
+            <div className="space-y-4">
+              <h3 className="text-3xl font-semibold text-gray-700">
+                Experience
+              </h3>
+              {profile?.experience && profile.experience.length > 0 ? (
+                <ul className="mt-2 space-y-2">
+                  {profile.experience.map((exp: any, index: any) => (
+                    <li key={index} className="text-lg">
+                      <p className="font-medium text-gray-800">{exp.company}</p>
+                      <p className="text-gray-500">
+                        {exp.title} - {exp.startDate} to {exp.endDate}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-gray-500">No experience listed.</p>
+              )}
+            </div>
+
+            {/* Education Section */}
+            <div className="space-y-4">
+              <h3 className="text-3xl font-semibold text-gray-700">
+                Education
+              </h3>
+              {profile?.education && profile.education.length > 0 ? (
+                <ul className="mt-2 space-y-2">
+                  {profile?.education.map((edu: any, index: any) => (
+                    <li key={index} className="text-lg">
+                      <p className="font-medium text-gray-800">
+                        {edu.institute}
+                      </p>
+                      <p className="text-gray-500">
+                        {edu.degreeName} in {edu.fieldOfStudy} ({edu.startDate}{" "}
+                        - {edu.endDate})
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-gray-500">No education listed.</p>
+              )}
+            </div>
+
+            {/* Job Section */}
+            <div className="space-y-4">
+              <h3 className="text-3xl font-semibold text-gray-700">
+                Current Job
+              </h3>
+              {profile?.Job.map((job: any, index: any) => (
+                <div className="space-y-2">
+                  <p className="text-lg font-medium">
+                    {job.companyName} - {job.position}
+                  </p>
+                  <p className="text-gray-600">Status: {job.status}</p>
+                  {job.status == "CLOSED" || "PAUSED" ? (
+                    <p className="text-gray-600">
+                      Reason: {job.reasonForPause}
                     </p>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm text-gray-500">No experience listed.</p>
-            )}
-          </div>
+                  ) : null}
+                  <p className="text-gray-600">Location: {job.location}</p>
+                  <p className="text-gray-600">Type: {job.type}</p>
 
-          {/* Education Section */}
-          <div className="space-y-4">
-            <h3 className="text-3xl font-semibold text-gray-700">Education</h3>
-            {profile?.education && profile.education.length > 0 ? (
-              <ul className="mt-2 space-y-2">
-                {profile?.education.map((edu : any, index: any) => (
-                  <li key={index} className="text-lg">
-                    <p className="font-medium text-gray-800">{edu.institute}</p>
-                    <p className="text-gray-500">
-                      {edu.degreeName} in {edu.fieldOfStudy} ({edu.startDate} -{" "}
-                      {edu.endDate})
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm text-gray-500">No education listed.</p>
-            )}
-          </div>
+                  <p className="text-gray-600">
+                    Skills Required: {job.skills.join(", ")}
+                  </p>
+                  <p className="text-gray-600">
+                    Salary Range: {job.salaryRange}
+                  </p>
+                  <p className="text-gray-600">
+                    Qualification: {job.qualification}
+                  </p>
+                  <p className="text-gray-600">Experience: {job.experience}</p>
+                  <p className="text-gray-600">
+                    Specialization: {job.specialization}
+                  </p>
+                  <p className="text-gray-600">
+                    Description: {job.description}
+                  </p>
+                  <a
+                    href={job.websiteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    Visit Company Website
+                  </a>
+                </div>
+              ))}
+            </div>
 
-          {/* Job Section */}
-          <div className="space-y-4">
-            <h3 className="text-3xl font-semibold text-gray-700">
-              Current Job
-            </h3>
-            {profile?.Job.map((job : any, index : any) => (
-                (
-              <div className="space-y-2">
-                <p className="text-lg font-medium">
-                  {job.companyName} - {job.position}
-                </p>
-                <p className="text-gray-600">
-                  Status: {job.status}
-                </p>
-                {
-                    job.status == "CLOSED" || "PAUSED" ? 
-                    (
-                        <p className="text-gray-600">
-                          Reason: {job.reasonForPause}
-                        </p>
-                    ) : null
-                }
-                <p className="text-gray-600">
-                  Location: {job.location}
-                </p>
-                <p className="text-gray-600">
-                  Type: {job.type}
-                </p>
-            
-                <p className="text-gray-600">
-                  Skills Required: {job.skills.join(", ")}
-                </p>
-                <p className="text-gray-600">
-                  Salary Range: {job.salaryRange}
-                </p>
-                <p className="text-gray-600">
-                  Qualification: {job.qualification}
-                </p>
-                <p className="text-gray-600">
-                  Experience: {job.experience}
-                </p>
-                <p className="text-gray-600">
-                  Specialization: {job.specialization}
-                </p>
-                <p className="text-gray-600">
-                  Description: {job.description}
-                </p>
-                <a
-                  href={job.websiteLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  Visit Company Website
-                </a>
-              </div>
-            ) 
-            )) 
-            
-            }
-          </div>
+            {/* NID Image Section */}
+            <div>
+              <h3 className="text-3xl font-semibold text-gray-700">
+                NID Image
+              </h3>
+              {profile?.nidImage ? (
+                <Image
+                  src={profile.nidImage}
+                  alt="NID Image"
+                  width={400}
+                  height={250}
+                  className="rounded-lg shadow-md"
+                />
+              ) : (
+                <p className="text-sm text-gray-500">No NID image available.</p>
+              )}
+            </div>
 
-          {/* NID Image Section */}
-          <div>
-            <h3 className="text-3xl font-semibold text-gray-700">NID Image</h3>
-            {profile?.nidImage ? (
-              <Image
-                src={profile.nidImage}
-                alt="NID Image"
-                width={400}
-                height={250}
-                className="rounded-lg shadow-md"
-              />
-            ) : (
-              <p className="text-sm text-gray-500">No NID image available.</p>
-            )}
-          </div>
-
-          {/* Contact Button */}
-          <div className="mt-6 text-center">
-            <a
-              href={`mailto:${profile?.email}`}
-              className="inline-block px-8 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 transition duration-300"
-            >
-              Contact
-            </a>
+            {/* Contact Button */}
+            <div className="mt-6 text-center">
+              <a
+                href={`mailto:${profile?.email}`}
+                className="inline-block px-8 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 transition duration-300"
+              >
+                Contact
+              </a>
+            </div>
           </div>
         </div>
       )}

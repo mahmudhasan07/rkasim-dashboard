@@ -14,7 +14,6 @@ const SingleUser = () => {
     }),
   });
 
-  console.log("profile", profile);
 
   return (
     <div>
