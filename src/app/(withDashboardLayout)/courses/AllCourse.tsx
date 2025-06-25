@@ -11,20 +11,29 @@ const AllCourse = () => {
   });
 
   console.log(result);
-  
 
-  return <div>
-    {
-        loading ?
+  return (
+    <div>
+      {loading ? (
         <p>Loading...</p>
-        :
-        result?.map((item: any, index: number) => 
-        <div key={index}>
-            <Image src={item.thumbnailImage} alt="Image" width={500} height={500} className="w-"></Image>
-            {item.title}
-        </div>)
-    }
-  </div>;
+      ) : (
+        <div className="grid grid-cols-5 gap-5 my-10">
+          {result?.map((item: any, index: number) => (
+            <div key={index} className="border w-fit p-5 rounded-lg">
+              <Image
+                src={item.thumbnailImage}
+                alt="Image"
+                width={500}
+                height={500}
+                className="w-60 h-52 object-cover"
+              ></Image>
+              <h1 className="text-xl font-semibold">{item.title}</h1>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default AllCourse;
