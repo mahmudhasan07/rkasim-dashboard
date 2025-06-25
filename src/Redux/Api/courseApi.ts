@@ -4,7 +4,7 @@ const courseApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAllCourses: build.query({
       query: ({ page, limit }) => ({
-        url: `/admin/courses`,
+        url: `/course`,
         method: "GET",
       }),
     }),

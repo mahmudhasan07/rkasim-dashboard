@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import AddCourseForm from "./AddCourse";
+import AllCourse from "./AllCourse";
 
 const Course = () => {
   const [activeTab, setActiveTab] = useState("All Courses");
@@ -10,9 +11,9 @@ const Course = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "All Courses":
-        return <AddCourseForm></AddCourseForm> ;
+        return <AllCourse></AllCourse>;
       case "Add Course":
-        return;
+        return <AddCourseForm></AddCourseForm>;
     }
   };
 
