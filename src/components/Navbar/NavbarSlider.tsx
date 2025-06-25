@@ -26,7 +26,7 @@ const navigation: { label: string, route: string, iconPath: IconType }[] = [
   { label: "Dashboard", route: "/", iconPath: MdDashboard },
   { label: "Total Users", route: "/users", iconPath: FaUsers },
   { label: "Subscription", route: "/subscription", iconPath: MdSubscriptions  }, 
-  { label: "Courses", route: "/Courses", iconPath: MdOutlineCastForEducation }, 
+  { label: "Courses", route: "/courses", iconPath: MdOutlineCastForEducation }, 
 ];
 
 const NavbarSlider = ({ isOpen, toggleSidebar }: SidebarProps) => {

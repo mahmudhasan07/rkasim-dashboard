@@ -53,8 +53,8 @@ const userApi = baseApi.injectEndpoints({
     }),
 
     AllSubscriptionUsers: build.query({
-      query: ({ page, limit }) => ({
-        url: `/admin/subscription-users?page=${page}&limit=${limit}`,
+      query: ({ page, limit, status }) => ({
+        url: `/admin/subscription-users?status=${status}&page=${page}&limit=${limit}`,
         method: "GET",
       }),
     }),
@@ -68,4 +68,5 @@ export const {
   useUserStatusUpdateMutation,
   useSingleUserQuery,
   useDashboardInfoQuery,
+  useAllSubscriptionUsersQuery,
 } = userApi;

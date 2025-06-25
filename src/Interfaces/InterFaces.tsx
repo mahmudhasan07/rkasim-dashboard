@@ -5,6 +5,8 @@ export interface UserInterFace {
     role: string
     status: string
     id: string
+    location: string
+    subscriptionPlan: string
 }
 
 export interface ConcertInterface {

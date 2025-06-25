@@ -1,5 +1,9 @@
+import SubscriptionTabs from "./SubscriptionTabs";
+
 export default function Page() {
     return (
-        <div></div>
+        <div>
+            <SubscriptionTabs></SubscriptionTabs>
+        </div>
     );
 }
