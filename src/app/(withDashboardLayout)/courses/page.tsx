@@ -1,5 +1,9 @@
+import Course from "./Course";
+
 export default function Page() {
     return (
-        <div></div>
+        <div>
+            <Course></Course>
+        </div>
     );
 }
