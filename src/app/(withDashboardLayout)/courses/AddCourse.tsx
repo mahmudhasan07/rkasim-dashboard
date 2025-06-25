@@ -12,6 +12,7 @@ interface CourseFormData {
   description: string;
   thumbnailImage: File | null;
   videos: Video[];
+  freeForPlatinum: boolean; // New state for freeForPlatinum
 }
 
 export default function AddCourseForm() {
@@ -22,6 +23,7 @@ export default function AddCourseForm() {
     description: "",
     thumbnailImage: null,
     videos: [{ title: "", description: "", file: null }],
+    freeForPlatinum: false, // Default value set to false
   });
 
   const handleChange = (
@@ -53,6 +55,12 @@ export default function AddCourseForm() {
       };
       setFormData({ ...formData, videos: updatedVideos });
     }
+  };
+
+  const handleCheckboxChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setFormData({ ...formData, freeForPlatinum: e.target.checked });
   };
 
   const addVideo = () => {
@@ -94,6 +102,9 @@ export default function AddCourseForm() {
       formDataToSend.append(`videos[${index}][description]`, video.description);
       formDataToSend.append(`videos[${index}][file]`, video.file!); // assuming file is never null after validation
     });
+
+    // Add freeForPlatinum value to form data
+    formDataToSend.append("freeForPlatinum", formData.freeForPlatinum.toString());
 
     // Make an API call to submit the data (e.g., using fetch)
     console.log("Form Data Submitted", formDataToSend);
@@ -246,10 +257,24 @@ export default function AddCourseForm() {
           </div>
         </div>
 
+        {/* Free for Platinum Checkbox */}
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            name="freeForPlatinum"
+            checked={formData.freeForPlatinum}
+            onChange={handleCheckboxChange}
+            className="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+          />
+          <label htmlFor="freeForPlatinum" className="text-sm text-gray-700">
+            Free for Platinum
+          </label>
+        </div>
+
         <div className="flex justify-center">
           <button
             type="submit"
-            disabled={submit == "loading" ? true : false}
+            disabled={submit === "loading"}
             className="py-2 px-4 w-full border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/70 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
             {submit}
