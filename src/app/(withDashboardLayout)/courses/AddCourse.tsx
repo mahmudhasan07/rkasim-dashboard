@@ -1,4 +1,7 @@
+import { useAddCourseMutation } from "@/Redux/Api/courseApi";
+import ShowToastify from "@/utils/ShowToastify";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 interface Video {
   title: string;
@@ -17,6 +20,9 @@ interface CourseFormData {
 
 export default function AddCourseForm() {
   const [submit, setSubmit] = useState("Submit");
+
+  const [addCourseFn] = useAddCourseMutation();
+
   const [formData, setFormData] = useState<CourseFormData>({
     title: "",
     price: 0,
@@ -26,7 +32,7 @@ export default function AddCourseForm() {
     freeForPlatinum: false, // Default value set to false
   });
 
-  const handleChange = (
+  const handleChange = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     index?: number
   ) => {
@@ -57,9 +63,7 @@ export default function AddCourseForm() {
     }
   };
 
-  const handleCheckboxChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, freeForPlatinum: e.target.checked });
   };
 
@@ -70,9 +74,10 @@ export default function AddCourseForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmit("loading");
+
     // Perform validation
     if (
       !formData.title ||
@@ -81,12 +86,15 @@ export default function AddCourseForm() {
       !formData.thumbnailImage
     ) {
       alert("Please fill in all required fields");
+      setSubmit("Submit");
       return;
     }
 
     formData.videos.forEach((video, index) => {
+      // Fix validation to correctly check for video fields
       if (!video.title || !video.description || !video.file) {
         alert(`Please fill in all fields for Video ${index + 1}`);
+        setSubmit("Submit");
         return;
       }
     });
@@ -104,10 +112,25 @@ export default function AddCourseForm() {
     });
 
     // Add freeForPlatinum value to form data
-    formDataToSend.append("freeForPlatinum", formData.freeForPlatinum.toString());
+    formDataToSend.append(
+      "freeForPlatinum",
+      formData.freeForPlatinum.toString()
+    );
 
     // Make an API call to submit the data (e.g., using fetch)
-    console.log("Form Data Submitted", formDataToSend);
+    const formDataEntries: any = {};
+    formDataToSend.forEach((value, key) => {
+      formDataEntries[key] = value;
+    });
+    console.log("Form Data Entries:", formDataEntries);
+
+    const { data, error } = await addCourseFn(formDataToSend);
+    if (error) {
+      ShowToastify({ error: "Unsuccessful to add the course" });
+      setSubmit("Submit");
+    }
+    ShowToastify({ success: "Course added successfully" });
+    setSubmit("Submit");
   };
 
   return (
@@ -204,25 +227,25 @@ export default function AddCourseForm() {
                   </label>
                   <input
                     type="text"
-                    name={`videos[${index}][title]`}
-                    value={video.title}
+                    name={`title`}
+                    defaultValue={video.title}
                     onChange={(e) => handleChange(e, index)}
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 border py-1 px-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 block text-black w-full rounded-md border-gray-300 border py-1 px-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
 
                 <div>
                   <label
-                    htmlFor={`videos[${index}][description]`}
+                    htmlFor={`videos[${index}][description`}
                     className="block font-medium text-gray-700"
                   >
                     Video Description
                   </label>
                   <input
                     type="text"
-                    name={`videos[${index}][description]`}
-                    value={video.description}
+                    name={`description`}
+                    defaultValue={video.description}
                     onChange={(e) => handleChange(e, index)}
                     required
                     className="mt-1 block w-full rounded-md border-gray-300 border py-1 px-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
@@ -238,7 +261,7 @@ export default function AddCourseForm() {
                   </label>
                   <input
                     type="file"
-                    name={`videos[${index}][file]`}
+                    name={`file`}
                     onChange={(e) => handleFileChange(e, index)}
                     accept="video/*"
                     required
@@ -281,6 +304,7 @@ export default function AddCourseForm() {
           </button>
         </div>
       </form>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

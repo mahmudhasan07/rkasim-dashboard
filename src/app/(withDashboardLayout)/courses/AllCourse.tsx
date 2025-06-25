@@ -27,7 +27,7 @@ const AllCourse = () => {
                 height={500}
                 className="w-60 h-52 object-cover"
               ></Image>
-              <h1 className="text-xl font-semibold">{item.title}</h1>
+              <h1 className="text-lg font-semibold">{item.title}</h1>
             </div>
           ))}
         </div>

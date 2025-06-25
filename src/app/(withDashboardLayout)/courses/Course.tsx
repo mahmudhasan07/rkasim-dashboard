@@ -19,7 +19,7 @@ const Course = () => {
 
   return (
     <section className="p-5">
-      <div className="flex gap-10  border-b-2 p-3 text-lg">
+      <div className="flex gap-10  border-b-2 p-3 text-xl">
         {tabs.map((tab, index) => (
           <div
             key={index}
